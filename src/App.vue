@@ -44,6 +44,7 @@ const addNote = () => {
       <div class="cards-container">
         <div
           v-for="note in notes"
+          :key="note.id"
           class="card"
           :style="{backgroundColor: note.backgroundColor}"
         >
