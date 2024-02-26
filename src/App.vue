@@ -3,6 +3,7 @@ import { ref } from "vue";
 
 const showModal = ref(false);
 const newNote = ref("");
+const errorMessage = ref("");
 const notes = ref([]);
 
 function getRandomColor(){
@@ -10,6 +11,10 @@ function getRandomColor(){
 }
 
 const addNote = () => {
+  if (newNote.value.trim.length < 10) {
+    return errorMessage.value = "Minimal 10 chars";
+  }
+
   notes.value.push({
     id: Math.floor(Math.random() * 1234556),
     text: newNote.value,
@@ -18,6 +23,7 @@ const addNote = () => {
   });
   showModal.value = false;
   newNote.value = "";
+  errorMessage.value = "";
 };
 
 </script>
@@ -32,6 +38,7 @@ const addNote = () => {
           cols="30"
           rows="10"
         ></textarea>
+        <p v-if="errorMessage"> {{ errorMessage }}</p>
         <button @click="addNote">Add Note</button>
         <button class="close" @click="showModal = false">Close</button>
       </div>
@@ -152,5 +159,9 @@ header button {
 .modal .close {
   background-color: rgb(193, 15, 15);
   margin-top: 7px;
+}
+
+.modal p {
+  color: rgb(193, 15, 15);
 }
 </style>
