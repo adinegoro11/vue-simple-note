@@ -42,22 +42,15 @@ const addNote = () => {
         <button @click="showModal = true">+</button>
       </header>
       <div class="cards-container">
-        {{ notes }}
-        <div class="card">
+        <div
+          v-for="note in notes"
+          class="card"
+          :style="{backgroundColor: note.backgroundColor}"
+        >
           <p class="main-text">
-            Hidup ini adalah PERJALANAN PANJANG, dan sebagaimana sabda Nabi
-            -shollallohu alaihi wasallam-:  “Perjalanan panjang adalah potongan
-            dari adzab..” [HR. Bukhori dan Muslim]
+            {{ note.text }}
           </p>
-          <p class="date">04/11/2024</p>
-        </div>
-        <div class="card">
-          <p class="main-text">
-            Hidup ini adalah PERJALANAN PANJANG, dan sebagaimana sabda Nabi
-            -shollallohu alaihi wasallam-:  “Perjalanan panjang adalah potongan
-            dari adzab..” [HR. Bukhori dan Muslim]
-          </p>
-          <p class="date">04/11/2024</p>
+          <p class="date">{{ note.date.toLocaleDateString("en-US") }}</p>
         </div>
       </div>
     </div>
