@@ -11,7 +11,7 @@ function getRandomColor(){
 }
 
 const addNote = () => {
-  if (newNote.value.trim.length < 10) {
+  if (newNote.value.trim().length < 10) {
     return errorMessage.value = "Minimal 10 chars";
   }
 
